@@ -18,7 +18,11 @@ public class Multiplicador {
         
     }
 
-    
+    /**
+     * En aquest metode s'executen les multiplicacions i s'emmagatzemen en el future.
+     * @param multiplicacio
+     * @return 
+     */
     public Future<Integer> ejecutarTarea(Multiplicacio multiplicacio) {
         Future<Integer> future = executor.submit(multiplicacio);
         return future;

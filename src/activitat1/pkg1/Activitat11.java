@@ -13,6 +13,9 @@ public class Activitat11 {
 
         List<Multiplicacio> llistaTasques = new ArrayList<Multiplicacio>();
 
+        /**
+         * Amb aquest metode emplenem el future amb els numeros qe compondran la multiplicació.
+         */
         for (int i = 0; i < 10; i++) {
             Multiplicacio calcula = new Multiplicacio((int) (Math.random() * 10), (int) (Math.random() * 10));
             llistaTasques.add(calcula);
@@ -20,7 +23,10 @@ public class Activitat11 {
         }
 
         List<Future<Integer>> llistaResultats = new ArrayList<>();
-
+        
+        /**
+         * Aquest metode crida al metode ejecutarTarea que inicia les multiplicacions amb els fils.
+         */
         for (int i = 0; i < llistaTasques.size(); i++) {
             Future<Integer> future = Multiplicador.ejecutarTarea(llistaTasques.get(i));
             llistaResultats.add(future);
@@ -28,7 +34,8 @@ public class Activitat11 {
         }
 
         /**
-         * Aquest bucle serveix per a recorrer el Future amb els resultats.
+         * Aquest bucle serveix per a recorrer el Future amb els resultats i comprobar 
+         * si ja ha acabat.
          */
         for (Future<Integer> result : llistaResultats) {
                 while (!result.isDone()) {
@@ -38,7 +45,9 @@ public class Activitat11 {
         }
         
         
-        
+        /**
+         * Aquest bucle serveix per a mostrar els resultats quan ja ha acabat el future.
+         */
         for (int i = 0; i < llistaResultats.size(); i++) {
             Future<Integer> resultat = llistaResultats.get(i);
             try {
@@ -46,7 +55,9 @@ public class Activitat11 {
             } catch (InterruptedException | ExecutionException e) {
             }
         }
-
+        /**
+         * Cridem al metode que serveix per finalitzar el programa.
+         */
         Multiplicador.terminarMultiplicador();
         
     }
